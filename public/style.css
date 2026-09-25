@@ -1,0 +1,177 @@
+/* 光房子創意品牌色：深藍 #042f5e、黃 #ffe56d（與 FileDrop 同一套） */
+:root {
+  --navy: #042f5e;
+  --yellow: #ffe56d;
+
+  --bg: #f3f5f8;
+  --card: #fff;
+  --text: #1c2430;
+  --muted: #6b7686;
+  --border: #d9dee6;
+  --accent: var(--navy);
+  --accent-text: #fff;
+  --error: #c62828;
+  --ok: #1b7f4b;
+  --warn: #a96a00;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1420;
+    --card: #14202f;
+    --text: #e6e9ee;
+    --muted: #97a1b0;
+    --border: #27364a;
+    /* 深藍在暗底對比不足，改以品牌黃為主色 */
+    --accent: var(--yellow);
+    --accent-text: var(--navy);
+    --error: #ff6b6b;
+    --ok: #5ed39a;
+    --warn: #ffc861;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+.card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+/* --- 品牌 --- */
+.brand { text-align: center; margin-bottom: 26px; }
+.brand-logo {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 4 / 1;
+  margin: 0 auto 16px;
+  background: url("/_assets/brand/lockup.png") center / contain no-repeat;
+}
+@media (prefers-color-scheme: dark) {
+  .brand-logo { background-image: url("/_assets/brand/lockup-dark.png"); }
+}
+.brand h1 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--muted);
+}
+
+/* --- 表單 --- */
+.field { display: block; margin-bottom: 16px; }
+.label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.label small { font-weight: 400; font-size: 12px; color: var(--muted); }
+.text {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+}
+.text:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.prefixed { display: flex; align-items: center; gap: 0; }
+.prefix {
+  padding: 12px 10px;
+  border: 1px solid var(--border);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 15px;
+  white-space: nowrap;
+}
+.prefixed .text { border-radius: 0 10px 10px 0; }
+
+button, .primary {
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+}
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+#create, #again { width: 100%; }
+.link-btn {
+  display: block;
+  margin: 0 auto 16px;
+  padding: 4px 8px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: underline;
+}
+.row { display: flex; gap: 12px; margin-top: 4px; }
+.row button { flex: 1; }
+
+.error { color: var(--error); min-height: 1em; margin: 8px 0 0; font-size: 14px; }
+.muted { color: var(--muted); }
+
+/* --- 結果 --- */
+.result {
+  padding: 18px 14px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  text-align: center;
+  margin: 12px 0;
+}
+.short-url {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-all;
+}
+#target, #limits { font-size: 13px; margin: 6px 0 0; word-break: break-all; }
+
+/* --- 頁尾 --- */
+.site-footer {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.site-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 7px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+}
+.site-link:hover { border-color: var(--accent); }
+.legal { display: block; }
+.legal span { display: inline-block; white-space: nowrap; }

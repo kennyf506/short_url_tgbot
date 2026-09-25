@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>光房子創意縮網址服務</title>
+  <meta name="theme-color" content="#042f5e">
+  <meta name="description" content="把長網址變短，方便分享">
+  <link rel="icon" href="/_assets/brand/mark.png" type="image/png">
+  <link rel="apple-touch-icon" href="/_assets/brand/mark.png">
+  <link rel="stylesheet" href="/_assets/style.css?v=2">
+</head>
+<body>
+  <main class="card">
+    <header class="brand">
+      <div class="brand-logo" role="img" aria-label="光房子創意"></div>
+      <h1>縮網址服務</h1>
+    </header>
+
+    <div id="form">
+      <label class="field">
+        <span class="label">要縮短的網址</span>
+        <input id="url" class="text" type="url" inputmode="url" autocomplete="off"
+               placeholder="https://example.com/very/long/path">
+      </label>
+
+      <button id="toggle-adv" class="link-btn" type="button">進階設定</button>
+
+      <div id="advanced" hidden>
+        <label class="field">
+          <span class="label">自訂短碼<small>留空則隨機產生</small></span>
+          <div class="prefixed">
+            <span class="prefix">lhc.tw/</span>
+            <input id="code" class="text" type="text" autocomplete="off" placeholder="mylink"
+                   maxlength="10" pattern="[A-Za-z0-9_-]{3,10}">
+          </div>
+        </label>
+        <label class="field">
+          <span class="label">可開啟次數<small>0 或留空代表不限</small></span>
+          <input id="max-clicks" class="text" type="number" min="0" step="1" placeholder="0">
+        </label>
+        <label class="field">
+          <span class="label">到期時間<small>留空代表永久有效</small></span>
+          <input id="expires" class="text" type="datetime-local">
+        </label>
+        <label class="field">
+          <span class="label">備註<small>只有管理者看得到</small></span>
+          <input id="note" class="text" type="text" maxlength="255" placeholder="例如：給某某客戶的報價單">
+        </label>
+      </div>
+
+      <button id="create" class="primary" type="button">產生短網址</button>
+      <p id="error" class="error"></p>
+    </div>
+
+    <div id="done" hidden>
+      <p>短網址產生完成：</p>
+      <div class="result">
+        <a id="short-url" class="short-url" target="_blank" rel="noopener noreferrer"></a>
+      </div>
+      <p class="muted" id="target"></p>
+      <p class="muted" id="limits"></p>
+      <div class="row">
+        <button id="copy" type="button">複製網址</button>
+        <button id="again" class="primary" type="button">再縮一個</button>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <a class="site-link" href="https://lighthousecc.tw" target="_blank" rel="noopener noreferrer">前往光房子創意官網 →</a>
+      <span class="legal"><span>光房子創意股份有限公司</span> <span>Lighthouse Creative Co., Ltd.</span></span>
+    </footer>
+  </main>
+  <script src="/_assets/short.js?v=2"></script>
+</body>
+</html>

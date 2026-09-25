@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>縮網址管理</title>
+  <meta name="theme-color" content="#042f5e">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/_assets/brand/mark.png" type="image/png">
+  <link rel="stylesheet" href="/_assets/style.css?v=2">
+  <link rel="stylesheet" href="/_assets/admin.css?v=2">
+</head>
+<body class="admin">
+  <main class="admin-wrap">
+    <header class="admin-head">
+      <div class="brand-logo" role="img" aria-label="光房子創意"></div>
+      <div class="admin-title">
+        <h1>縮網址管理</h1>
+        <p id="summary" class="muted">載入中…</p>
+      </div>
+      <div class="admin-actions">
+        <input id="search" class="text" type="search" placeholder="搜尋短碼、網址、備註" autocomplete="off">
+        <button id="reload" type="button">重新整理</button>
+      </div>
+    </header>
+
+    <p id="admin-error" class="error"></p>
+
+    <!-- 有勾選時才出現，避免平時佔版面 -->
+    <div id="bulk-bar" class="bulk-bar" hidden>
+      <span id="bulk-count"></span>
+      <button id="bulk-delete" class="danger" type="button">刪除選取的連結</button>
+      <button id="bulk-clear" type="button">取消選取</button>
+    </div>
+
+    <div class="table-scroll">
+      <table id="table">
+        <thead>
+          <tr>
+            <th class="pick"><input id="check-all" type="checkbox" aria-label="全選"></th>
+            <th>短碼</th>
+            <th>目標網址</th>
+            <th>備註</th>
+            <th class="num">點擊</th>
+            <th>到期</th>
+            <th>來源</th>
+            <th>狀態</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- 編輯用對話框 -->
+  <dialog id="edit-dialog">
+    <form method="dialog" id="edit-form">
+      <h2>編輯連結</h2>
+      <label class="field">
+        <span class="label">短碼</span>
+        <input id="e-code" class="text" type="text" maxlength="10">
+      </label>
+      <label class="field">
+        <span class="label">目標網址</span>
+        <input id="e-url" class="text" type="text">
+      </label>
+      <label class="field">
+        <span class="label">備註</span>
+        <input id="e-note" class="text" type="text" maxlength="255">
+      </label>
+      <div class="pair">
+        <label class="field">
+          <span class="label">可開啟次數<small>0 = 不限</small></span>
+          <input id="e-max" class="text" type="number" min="0" step="1">
+        </label>
+        <label class="field">
+          <span class="label">已點擊次數<small>可歸零</small></span>
+          <input id="e-cur" class="text" type="number" min="0" step="1">
+        </label>
+      </div>
+      <label class="field">
+        <span class="label">到期時間<small>留空 = 永久</small></span>
+        <input id="e-exp" class="text" type="datetime-local">
+      </label>
+      <label class="check"><input id="e-disabled" type="checkbox"> 停用這個連結</label>
+      <label class="check"><input id="e-notify" type="checkbox"> 首次點擊時發 Telegram 通知</label>
+      <label class="check"><input id="e-notified" type="checkbox"> 已發送過通知</label>
+      <p id="edit-error" class="error"></p>
+      <div class="dialog-actions">
+        <button id="edit-cancel" type="button">取消</button>
+        <button id="edit-save" class="primary" type="button">儲存</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/_assets/admin.js?v=2"></script>
+</body>
+</html>

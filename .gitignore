@@ -1,0 +1,11 @@
+node_modules/
+
+# 含資料庫密碼與 Telegram bot token
+.env
+.env.bak-*
+
+# 正式資料的匯出（客戶連結、Telegram 使用者 ID），不進版控
+short_links-backup.json
+
+.DS_Store
+*.log
