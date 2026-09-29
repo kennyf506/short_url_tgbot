@@ -5,6 +5,7 @@ let links = [];
 let site = 'https://lhc.tw';
 let editing = null;
 const selected = new Set();
+const qr = window.LhcQR.mount($('qr'));
 
 function visibleLinks() {
   const q = $('search').value.trim().toLowerCase();
@@ -123,6 +124,10 @@ function render() {
 
     const act = document.createElement('td');
     act.className = 'nowrap';
+    const qrBtn = document.createElement('button');
+    qrBtn.textContent = 'QR';
+    qrBtn.title = '產生這個短網址的 QR Code';
+    qrBtn.addEventListener('click', () => openQr(l));
     const edit = document.createElement('button');
     edit.textContent = '編輯';
     edit.addEventListener('click', () => openEdit(l));
@@ -130,7 +135,7 @@ function render() {
     del.textContent = '刪除';
     del.className = 'danger';
     del.addEventListener('click', () => remove(l));
-    act.append(edit, ' ', del);
+    act.append(qrBtn, ' ', edit, ' ', del);
 
     tr.append(pick, code, url, note, clicks, exp, src, status, act);
     return tr;
@@ -160,6 +165,15 @@ async function load() {
     $('admin-error').textContent = `讀取失敗：${e.message}`;
   }
 }
+
+function openQr(l) {
+  const shortUrl = `${site}/${l.short_code}`;
+  $('qr-title').textContent = shortUrl.replace(/^https?:\/\//, '');
+  qr.show(shortUrl, l.short_code);
+  $('qr-dialog').showModal();
+}
+
+$('qr-close').addEventListener('click', () => $('qr-dialog').close());
 
 function openEdit(l) {
   editing = l;

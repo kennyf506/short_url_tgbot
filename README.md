@@ -6,6 +6,7 @@
 
 - 公開建立頁 `/short`：貼上長網址即可產生短網址，支援自訂短碼、次數上限、到期時間、備註
 - 管理後台 `/admin`：列出所有連結，可搜尋、編輯、停用、單筆或批次刪除
+- QR Code：建立完成頁與管理後台（每筆的「QR」按鈕）都能產生短網址的 QR Code，有 5 種樣式、中間可放光房子創意圓形 logo，可下載 PNG／SVG 或複製圖片
 - 點擊次數限制與到期時間，達上限或過期會顯示品牌化的失效頁
 - 有人從公開頁建立時發 Telegram 通知（含目標網址與來源 IP）
 - 首次點擊通知（由建立者決定是否開啟）
@@ -49,4 +50,5 @@ nginx 需要把 `/admin` 與 `/api/admin` 限制來源並加上 Basic Auth，`/a
 
 - **靜態檔改動後要把 HTML 裡的 `?v=` 版本號加一**，否則 Cloudflare 與瀏覽器的快取會讓使用者拿到舊檔
 - 目標網址若缺少 `http(s)://`，`res.redirect` 會當成相對路徑而導致 404。建立時會自動補上 `https://`，管理頁也會把既有的問題資料標示出來
+- QR Code 完全在瀏覽器端產生（`public/qr.js`，使用 `public/vendor/` 內的 [qr-code-styling](https://github.com/kozakdenys/qr-code-styling)，MIT），伺服器不需額外套件。中間有 logo 所以固定用 H 級容錯；logo 由 `brand/mark.png` 裁成圓形，右上角的 ® 會被裁掉
 - 點擊次數的檢查與累加是單一原子操作（`UPDATE ... WHERE current_clicks < max_clicks`），避免並發時超過上限

@@ -30,6 +30,8 @@
   }
 }
 * { box-sizing: border-box; }
+/* 有設 display 的元素（例如 .bulk-bar）也要能被 hidden 屬性藏起來 */
+[hidden] { display: none !important; }
 body {
   margin: 0;
   min-height: 100vh;
@@ -175,3 +177,24 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .site-link:hover { border-color: var(--accent); }
 .legal { display: block; }
 .legal span { display: inline-block; white-space: nowrap; }
+
+/* --- QR Code（建立頁與管理後台共用，見 qr.js） --- */
+.qr-panel { margin: 18px 0 12px; text-align: center; }
+.qr-preview {
+  width: min(260px, 100%);
+  aspect-ratio: 1;
+  margin: 0 auto 14px;
+  border-radius: 14px;
+  overflow: hidden;
+  /* 暗色模式下讓 QR 周圍仍有一圈淺色，掃描比較穩 */
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--border);
+}
+.qr-preview svg, .qr-preview canvas { display: block; width: 100%; height: 100%; }
+.qr-styles { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 12px; }
+.qr-style { padding: 6px 14px; font-size: 14px; border-radius: 999px; }
+.qr-style[aria-checked="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; box-shadow: inset 0 0 0 1px var(--accent); }
+.qr-panel .qr-logo { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 14px; cursor: pointer; }
+.qr-logo input { width: 16px; height: 16px; accent-color: var(--navy); }
+.qr-actions { margin-bottom: 8px; }
+.qr-msg { min-height: 1em; margin: 4px 0 0; font-size: 13px; }

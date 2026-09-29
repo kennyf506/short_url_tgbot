@@ -1,6 +1,7 @@
 'use strict';
 
 const $ = (id) => document.getElementById(id);
+const qr = window.LhcQR.mount($('qr'));
 
 $('toggle-adv').addEventListener('click', () => {
   const adv = $('advanced');
@@ -55,6 +56,7 @@ $('create').addEventListener('click', async () => {
     });
     $('form').hidden = true;
     $('done').hidden = false;
+    qr.show(data.shortUrl, data.code);
   } catch {
     $('error').textContent = '網路錯誤，請再試一次';
   } finally {
