@@ -130,8 +130,10 @@
         type: 'canvas',
         data: url,
         margin: Math.round(SIZE * 0.06),
-        // H 級容錯（約 30%）才撐得住中間被 logo 蓋掉的區塊
-        qrOptions: { errorCorrectionLevel: 'H' },
+        // 有 logo 要 H 級容錯（約 30%）才撐得住中間被蓋掉的區塊；
+        // 沒 logo 用 M 級（約 15%）：lhc.tw 的短網址 ≤ 25 字元，M 與 L 一樣是 25×25 格，
+        // 碼點比 H 級的 29×29 少，容錯又比 L 級多一倍
+        qrOptions: { errorCorrectionLevel: image ? 'H' : 'M' },
         image: image || undefined,
         imageOptions: { hideBackgroundDots: true, imageSize: 0.38, margin: 6, saveAsBlob: true },
         dotsOptions: preset.dots,
